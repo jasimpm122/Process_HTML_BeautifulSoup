@@ -1,47 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect, reverse
-from DriveUEmployees.models import Employee, Department, EmployeeSalary, EmployeeLeave, Manager
-from DriveUEmployees.forms import Employeeform
 from bs4 import BeautifulSoup
 import requests
-
-
-def manager_list(request):
-    managers = Manager.objects.values()
-    return HttpResponse(managers, safe=False)
-
-
-def employee_list(request):
-    employees = Employee.objects.all()
-    return render(request, 'list.html', {
-        'counts': employees
-    })
-
-
-def leave_list(request):
-    a = EmployeeLeave.objects.values()
-    return HttpResponse(a, safe=False)
-
-
-def salary_list(request):
-    b = EmployeeSalary.objects.values()
-    return HttpResponse(b, safe=False)
-
-
-def delete_employee(request, employee_id):
-    z = Employee.objects.get(id=employee_id)
-    z.delete()
-    return redirect(reverse('list_employees'))
-
-
-def add_employees(request):
-    if request.method == 'POST':
-        form = Employeeform(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('list_employees')
-    elif request.method == 'GET':
-        form = Employeeform()
-    return render(request, 'add.html', {'form': form})
 
 
 def jasim(request):
