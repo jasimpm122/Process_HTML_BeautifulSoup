@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def jasim(request):
+def newfunction(request):
     if request.method == 'GET':
         return render(request, 'jasim.html')
     elif request.method == 'POST':
